@@ -1,5 +1,5 @@
 let mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/notivy", {
+mongoose.connect("mongodb://127.0.0.1:27017/novity", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -8,5 +8,18 @@ let db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function callback() {
   console.log("DB connection established !");
+  const db = require("../models");
+  const User = db.user;
+  User.estimatedDocumentCount((error, count) => {
+    if (!error && count === 0) {
+      new User({username: "novity",password: "novity"})
+      .save((error) => {
+        if (error) {
+          console.log("error", error);
+        }
+        console.log("added novity admin to user collection");
+      });
+    }
+  });
 });
 mongoose.set("useFindAndModify", false);

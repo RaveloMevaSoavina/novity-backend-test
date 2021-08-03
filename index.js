@@ -4,6 +4,7 @@ const cors = require("cors");
 const path = require("path");
 const methodOverride = require("method-override");
 
+require("./database/db.js");
 require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const clientRoutes = require("./routes/client.route")
