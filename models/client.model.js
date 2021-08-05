@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const Clients = new mongoose.Schema({
     nom_client: {type: String, required: true},
-    type:{type: Number},
+    type:{type: String},
     stack_technique: {type: String},     
     localisation: {type: String},     
     structure_equipe: {type: String},
