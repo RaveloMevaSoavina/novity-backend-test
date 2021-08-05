@@ -1,4 +1,6 @@
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+
 mongoose.connect("mongodb://127.0.0.1:27017/novity", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -12,7 +14,7 @@ db.once("open", function callback() {
   const User = db.user;
   User.estimatedDocumentCount((error, count) => {
     if (!error && count === 0) {
-      new User({username: "novity",password: "novity"})
+      new User({username: process.env.USERNAME ,password: bcrypt.hashSync(process.env.PASSWORD, 8)})
       .save((error) => {
         if (error) {
           console.log("error", error);

@@ -8,6 +8,8 @@ require("./database/db.js");
 require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const clientRoutes = require("./routes/client.route")
+const consultantRoutes = require("./routes/consultant.route")
+const authentificationRoutes = require("./routes/auth.route")
 
 
 app.use(express.json());
@@ -19,6 +21,8 @@ app.use(methodOverride("_method"));
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use('/api/v1/auth/signin', authentificationRoutes);
 app.use('/api/v1/client', clientRoutes)
+app.use('/api/v1/consultant', consultantRoutes)
 
 app.listen(PORT , () => {console.log(`The server is up and running on ${PORT}`)});

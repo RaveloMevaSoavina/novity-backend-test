@@ -26,13 +26,13 @@ exports.create = (request , response) => {
 exports.delete = (request, response) => {
   Client.findByIdAndRemove({ _id: request.params.id }, (error, client) => {
     error ? response.status(500).json(err)
-    : response.json({status: 204, message: "Resource deleted successfully", client})
+    : response.json({status: 204, message: "Resource deleted successfully", clients : client})
   })
 };
 
 exports.update = (request, response) => {
   Client.findOneAndUpdate({ _id: request.params.id },{ $set: request.body},{ new: true }, (error, client) => {
   error ? response.status(500).send(error)
-  : response.json({status: 204, message: "Resource updated successfully", client});
+  : response.json({status: 204, message: "Resource updated successfully", clients : client});
   });
 };
