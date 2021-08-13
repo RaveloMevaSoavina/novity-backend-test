@@ -9,6 +9,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const clientRoutes = require("./routes/client.route")
 const consultantRoutes = require("./routes/consultant.route")
+const moodclientRoutes = require("./routes/moodclient.route")
 const authentificationRoutes = require("./routes/auth.route")
 
 
@@ -24,5 +25,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use('/api/v1/auth/signin', authentificationRoutes);
 app.use('/api/v1/client', clientRoutes)
 app.use('/api/v1/consultant', consultantRoutes)
+app.use('/api/v1/moodclient', moodclientRoutes)
 
 app.listen(PORT , () => {console.log(`The server is up and running on ${PORT}`)});
